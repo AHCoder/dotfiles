@@ -7,6 +7,7 @@
 set -e
 
 # --- VARIABLES ---
+INSTALL_DIR="$HOME/bin"
 OMP_URL="https://ohmyposh.dev/install.sh"
 THEME_URL="https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/catppuccin_frappe.omp.json"
 THEME_DIR="$HOME/.config/oh-my-posh/themes"
@@ -14,8 +15,18 @@ THEME_FILE="$THEME_DIR/catppuccin_frappe.omp.json"
 SHELL_RC="$HOME/.bashrc"  # Change to ~/.zshrc if using zsh
 
 # --- INSTALL OMP ---
-echo "[*] Installing Oh My Posh..."
-curl -s $OMP_URL | bash -s
+echo "[*] Installing Oh My Posh to $INSTALL_DIR..."
+mkdir -p "$INSTALL_DIR"
+curl -s $OMP_URL | bash -s -- -d "$INSTALL_DIR"
+
+# --- ENSURE ~/bin IN PATH ---
+echo "[*] Ensuring $INSTALL_DIR is in PATH..."
+EXPORT_PATH="export PATH=\"\$HOME/bin:\$PATH\""
+if ! grep -Fxq "$EXPORT_PATH" "$SHELL_RC"; then
+    echo "" >> "$SHELL_RC"
+    echo "# Add ~/bin to PATH for Oh My Posh" >> "$SHELL_RC"
+    echo "$EXPORT_PATH" >> "$SHELL_RC"
+fi
 
 # --- INSTALL NERD FONT ---
 echo "[*] Installing Nerd Font..."
