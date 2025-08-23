@@ -9,9 +9,9 @@ set -e
 # --- VARIABLES ---
 INSTALL_DIR="$HOME/bin"
 OMP_URL="https://ohmyposh.dev/install.sh"
-THEME_URL="https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/catppuccin_frappe.omp.json"
+THEME_URL="https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/catppuccin_mocha.omp.json"
 THEME_DIR="$HOME/.config/oh-my-posh/themes"
-THEME_FILE="$THEME_DIR/catppuccin_frappe.omp.json"
+THEME_FILE="$THEME_DIR/catppuccin_mocha.omp.json"
 SHELL_RC="$HOME/.bashrc"  # Change to ~/.zshrc if using zsh
 
 # --- INSTALL OMP ---
